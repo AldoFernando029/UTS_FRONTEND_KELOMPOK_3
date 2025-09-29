@@ -1,0 +1,393 @@
+/* GLOBAL  */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f5f5f5;
+  color: #333;
+}
+
+header {
+  background: #0077cc;
+  color: white;
+  padding: 15px;
+  text-align: center;
+  font-size: 20px;
+}
+
+/* NAV */
+nav {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin: 15px 0;
+}
+nav button {
+  padding: 8px 18px;
+  border: none;
+  background: #0077cc;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 15px;
+}
+nav button:hover {
+  background: #005fa3;
+}
+
+/* HERO */
+#hero {
+  position: relative;
+  height: 100px; /* atur tinggi */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  border-radius: 8px;
+  --bg: url('lombok.jpg'); /* default background */
+}
+
+#hero::before {
+  content: "";
+  position: absolute;
+  top: 10px; left: 10px;
+  width: 100%; height: 100%;
+  background-image: var(--bg);
+  background-size: cover;
+  background-position: center;
+  filter: blur(4px);
+  opacity: 0.7;
+}
+
+#hero img {
+  width: 50%;
+  height: 100%;       /* tinggi hero */
+  max-width: none;   
+  object-fit: cover;  /* potong sisi biar proporsional */
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  position: relative;
+}
+
+.hero-text {
+  position: absolute;
+  z-index: 3;
+  text-align: center;
+  color: white;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+}
+
+.hero-text h1 {
+  font-size: 34px;
+  margin: 0;
+}
+
+.hero-text p {
+  font-size: 16px;
+  margin-top: 8px;
+}
+
+/* CAROUSEL */
+.carousel-wrapper {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  overflow: hidden;
+}
+.carousel {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 15px;
+  -webkit-overflow-scrolling: touch;
+}
+.carousel::-webkit-scrollbar { display: none; }
+
+.carousel-card {
+  flex: 0 0 170px;
+  scroll-snap-align: start;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  text-align: center;
+  cursor: pointer;
+}
+.carousel-card img {
+  width: 100%;
+  height: 110px;
+  border-radius: 10px 10px 0 0;
+  object-fit: cover;
+}
+.carousel-card h3 {
+  margin: 6px 0;
+  font-size: 14px;
+  color: #333;
+}
+
+/* Hasil search Destinasi*/
+#destinations {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 10px;
+  padding: 10px;
+}
+.card {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  padding: 10px;
+  text-align: center;
+}
+.card img {
+  width: 600px;
+  height: 340px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+.card h3 { 
+  margin: 10px 0 5px; 
+}
+
+/* Wishlist */
+#wishlist ul {
+  list-style: none;
+  padding: 20px;
+}
+#wishlist li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 10px 0;
+  background: #0077cc;
+}
+#wishlist img {
+  width: 50%;
+  height: 60%;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+/* Wishlist Container */
+#wishlistList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center; /* biar rata tengah */
+  margin-top: 20px;
+}
+
+/* Card Style */
+#wishlistList .card {
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  width: 260px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+#wishlistList .card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.15);
+}
+
+#wishlistList .card img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-bottom: 1px solid #eee;
+}
+
+#wishlistList .card h3 {
+  margin: 10px 0 5px;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+#wishlistList .card p {
+  font-size: 0.9rem;
+  color: #666;
+  padding: 0 10px 10px;
+}
+
+/* Button di dalam card */
+#wishlistList .card button {
+  margin-bottom: 15px;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+  background: #e74c3c;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+#wishlistList .card button:hover {
+  background: #c0392b;
+}
+
+.wishlist-btn {
+  background-color: #3498db; /* biru */
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.wishlist-btn:hover {
+  background-color: #217dbb; /* lebih gelap saat hover */
+}
+
+
+/* Kalender */
+.calendar {
+  max-width: 800px;
+  margin: auto;
+}
+
+.calendar-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin: 20px 0;
+}
+
+.calendar-nav h2 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+}
+
+.calendar-nav button {
+  padding: 6px 14px;
+  background: #0077cc;
+  border: none;
+  color: #fff;
+  font-size: 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.calendar-nav button:hover {
+  background: #005fa3;
+}
+
+/* Header nama hari */
+.calendar-header div {
+  background: #0077cc;
+  color: white;
+  font-weight: bold;
+  padding: 10px 0;
+  border-radius: 6px;
+  text-align: center;
+}
+
+/* Grid kalender */
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.calendar-grid div {
+  border: 1px solid #ddd;
+  padding: 15px 0;
+  text-align: center;
+  border-radius: 8px;
+  background: #fafafa;
+  font-size: 14px;
+  color: #333;
+  transition: all 0.2s ease-in-out;
+}
+
+.calendar-grid div:hover {
+  background: #e9f4ff;
+  transform: scale(1.05);
+}
+
+/* Hari dengan event */
+.event-day {
+  background: #ffeb3b !important;
+  font-weight: bold;
+  color: #000;
+  border: 1px solid #e6c300;
+  cursor: pointer;
+}
+.event-day:hover {
+  background: #ffe066 !important;
+}
+
+/* Hari kosong */
+.empty {
+  background: transparent !important;
+  border: none !important;
+  cursor: default !important;
+}
+
+/* Overlay */
+.popup {
+  display: none; /* default sembunyi */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5); /* layar gelap */
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+/* Box popup */
+.popup-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 350px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Tombol tutup */
+.popup button {
+  margin-top: 15px;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 5px;
+  background: #3498db;
+  color: #fff;
+  cursor: pointer;
+}
+
+.popup button:hover {
+  background: #2980b9;
+}
+
+/* Responsif Kalender*/
+@media (max-width: 768px) {
+  .calendar-grid div {
+    padding: 10px 0;
+    font-size: 12px;
+  }
+}
+
+
+/* RESPONSIF UNTUK LAPTOP <= 1366px */
+@media (max-width: 1366px) {
+  header { font-size: 18px; }
+  #hero { height: 65vh; }
+  .hero-text h1 { font-size: 28px; }
+  .hero-text p { font-size: 14px; }
+  .carousel-card { flex: 0 0 150px; }
+  .carousel-card img { height: 95px; }
+  .carousel-card h3 { font-size: 13px; }
+}
+
+

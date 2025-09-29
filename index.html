@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wisata Nusantara</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>🌏 Wisata Nusantara</h1>
+    <p>Temukan destinasi wisata & event budaya di Indonesia</p>
+  </header>
+
+  <!-- NAVBAR -->
+  <nav>
+    <div class="nav-left">
+      <button onclick="showPage('home')">Beranda</button>
+      <button onclick="showPage('wishlist')">Wishlist</button>
+      <button onclick="showPage('calendar')">Kalender</button>
+    </div>
+    <div class="nav-right">
+      <input type="text" id="search" placeholder="Cari destinasi..." onkeyup="searchDestinasi()">
+    </div>
+  </nav>
+
+  <!-- HOME PAGE (HERO + CAROUSEL dibungkus biar bisa disembunyiin sekaligus) -->
+  <div id="home" class="page">
+    <!-- HERO -->
+    <section id="hero">
+      <img id="heroImg" src="lombok.jpg" alt="Lombok">
+      <div class="hero-text">
+        <h1 id="heroTitle">Lombok</h1>
+        <p id="heroSubtitle">Destinasi Impianmu 🌴✨</p>
+      </div>
+    </section>
+
+    <!-- CAROUSEL -->
+    <div class="carousel-wrapper">
+      <div class="carousel" id="carousel"></div>
+    </div>
+  </div>
+
+  <!-- DESTINASI HASIL SEARCH -->
+  <div id="destinations" class="page" style="display:none;">
+    <h2>Hasil Pencarian</h2>
+    <div id="destinationsList"></div>
+  </div>
+
+  <!-- WISHLIST -->
+  <div id="wishlist" class="page" style="display:none;">
+    <h2>Wishlist Destinasi</h2>
+    <div id="wishlistList"></div>
+  </div>
+
+  <!-- KALENDER -->  
+  <div id="calendar" class="page" style="display:none;">
+    <h2>Kalender Event</h2>
+    <div class="calendar">
+      <div class="calendar-nav">
+        <button onclick="prevMonth()">&lt;</button>
+        <h2 id="monthYear"></h2>
+        <button onclick="nextMonth()">&gt;</button>
+      </div>
+
+      <!-- Header nama hari -->
+      <div class="calendar-grid calendar-header">
+        <div>Sen</div>
+        <div>Sel</div>
+        <div>Rab</div>
+        <div>Kam</div>
+        <div>Jum</div>
+        <div>Sab</div>
+        <div>Min</div>
+      </div>
+
+      <!-- Grid tanggal -->
+      <div class="calendar-grid" id="days"></div>
+    </div>
+  </div>
+
+  <!-- POPUP -->
+  <div class="popup" id="popup">
+    <div class="popup-content">
+      <h3 id="eventTitle"></h3>
+      <p id="eventDetails"></p>
+      <button onclick="closePopup()">Tutup</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
