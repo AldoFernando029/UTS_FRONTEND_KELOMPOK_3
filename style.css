@@ -455,12 +455,14 @@ nav button:hover {
 .landing-content {
     position: absolute;
     top: 45%; 
-    right: 5%; 
+    right: 15%; 
     transform: translateY(-50%);
     z-index: 20;
     text-align: left;
     max-width: 350px; 
 }
+
+
 
 .landing-content h1 {
     font-size: 2.5em; 

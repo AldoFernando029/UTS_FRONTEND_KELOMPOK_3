@@ -170,7 +170,7 @@ window.handleGetStarted = () => {
     if (landingPage && mainContent) {
         landingPage.style.display = 'none';
         mainContent.style.display = 'block';
-        window.showPage('home'); // PASTIKAN MEMANGGIL HALAMAN 'HOME' SETELAH START
+        window.showPage('calendar'); 
         window.scrollTo(0, 0);
     }
 };
