@@ -1,0 +1,391 @@
+/* GLOBAL */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  color: #333;
+}
+
+/* NAVBAR */
+.top-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+  background: #0077cc;
+  color: white;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.nav-left {
+  display: flex;
+  gap: 25px;
+}
+
+.top-nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 16px;
+  transition: opacity 0.3s;
+  padding-bottom: 3px;
+}
+
+.top-nav a:hover {
+  opacity: 0.8;
+}
+
+.top-nav a.active {
+  border-bottom: 3px solid white;
+  font-weight: 700;
+}
+
+.nav-right input {
+  padding: 8px 15px;
+  border-radius: 6px;
+  border: none;
+  font-size: 14px;
+  width: 250px;
+}
+
+.nav-right input:focus {
+  outline: 2px solid white;
+}
+
+/* LAYOUT KALENDER */
+.calendar-page {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 60px 40px;
+  gap: 50px;
+  flex-wrap: wrap;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* LEFT IMAGE */
+.calendar-left {
+  flex: 1;
+  min-width: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.calendar-img {
+  width: 100%;
+  max-width: 550px;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  transition: transform 0.3s;
+}
+
+.calendar-img:hover {
+  transform: scale(1.02);
+}
+
+/* RIGHT CALENDAR */
+.calendar-right {
+  flex: 1;
+  min-width: 400px;
+  max-width: 550px;
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  padding: 30px 35px;
+}
+
+.calendar-right h2 {
+  text-align: center;
+  color: #0077cc;
+  margin: 0 0 25px 0;
+  font-size: 2em;
+  letter-spacing: 1px;
+}
+
+/* NAVIGASI BULAN */
+.calendar-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.calendar-nav button {
+  background: #0077cc;
+  border: none;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: bold;
+  transition: all 0.3s;
+}
+
+.calendar-nav button:hover {
+  background: #005fa3;
+  transform: scale(1.1);
+}
+
+.calendar-nav h3 {
+  font-size: 1.3em;
+  color: #333;
+  margin: 0;
+  font-weight: 600;
+}
+
+/* GRID KALENDER */
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px;
+  text-align: center;
+}
+
+/* HEADER HARI */
+.calendar-header {
+  margin-bottom: 10px;
+}
+
+.calendar-header div {
+  font-weight: bold;
+  color: #0077cc;
+  font-size: 14px;
+  padding: 10px 0;
+}
+
+/* TANGGAL */
+.day {
+  background: #f9f9f9;
+  padding: 16px 0;
+  border-radius: 10px;
+  border: 1px solid #e0e0e0;
+  transition: all 0.2s;
+  cursor: default;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.day:hover {
+  background: #e9f4ff;
+  transform: translateY(-2px);
+  box-shadow: 0 2px 8px rgba(0,119,204,0.2);
+}
+
+/* HARI INI */
+.today {
+  background: #0077cc !important;
+  color: white !important;
+  font-weight: bold;
+  border: 2px solid #005fa3;
+}
+
+/* TANGGAL EVENT */
+.event-day {
+  background: #ffeb3b !important;
+  color: #333 !important;
+  font-weight: bold;
+  border: 2px solid #fbc02d;
+  cursor: pointer;
+  position: relative;
+}
+
+.event-day:hover {
+  background: #fdd835 !important;
+  transform: scale(1.05);
+}
+
+.event-day::after {
+  content: "📅";
+  position: absolute;
+  top: 2px;
+  right: 4px;
+  font-size: 10px;
+}
+
+/* KOTAK KOSONG */
+.empty {
+  background: transparent;
+  border: none;
+}
+
+/* INFO BOX */
+.calendar-info {
+  background: #e3f2fd;
+  border-left: 5px solid #0077cc;
+  padding: 18px;
+  margin-top: 25px;
+  border-radius: 12px;
+}
+
+.calendar-info p {
+  margin: 0;
+  font-size: 0.95em;
+  color: #444;
+  line-height: 1.5;
+}
+
+/* POPUP EVENT */
+.popup {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.popup-content {
+  background: white;
+  padding: 30px;
+  border-radius: 16px;
+  text-align: center;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+  animation: slideUp 0.3s;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.popup-content img {
+  width: 100%;
+  border-radius: 12px;
+  margin-bottom: 15px;
+  max-height: 250px;
+  object-fit: cover;
+}
+
+.popup-content h3 {
+  color: #0077cc;
+  font-size: 1.5em;
+  margin: 10px 0;
+}
+
+.popup-content p {
+  color: #555;
+  font-size: 1em;
+  line-height: 1.6;
+  margin: 10px 0 20px;
+}
+
+.popup-content button {
+  padding: 10px 25px;
+  background: #0077cc;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+.popup-content button:hover {
+  background: #005fa3;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .calendar-page {
+    flex-direction: column;
+    padding: 30px 20px;
+    gap: 30px;
+  }
+
+  .calendar-left,
+  .calendar-right {
+    width: 100%;
+    min-width: auto;
+  }
+
+  .calendar-img {
+    max-width: 100%;
+  }
+
+  .top-nav {
+    flex-direction: column;
+    gap: 15px;
+    padding: 15px 20px;
+  }
+
+  .nav-left {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .nav-right input {
+    width: 100%;
+  }
+
+  .calendar-grid {
+    gap: 6px;
+  }
+
+  .day {
+    padding: 12px 0;
+    font-size: 13px;
+  }
+
+  .calendar-nav h3 {
+    font-size: 1.1em;
+  }
+}
+
+@media (max-width: 600px) {
+  .calendar-right {
+    padding: 20px 15px;
+  }
+
+  .calendar-right h2 {
+    font-size: 1.5em;
+  }
+
+  .calendar-header div {
+    font-size: 12px;
+    padding: 8px 0;
+  }
+
+  .day {
+    padding: 10px 0;
+    font-size: 12px;
+  }
+
+  .popup-content {
+    width: 95%;
+    padding: 20px;
+  }
+
+  .popup-content h3 {
+    font-size: 1.2em;
+  }
+}
