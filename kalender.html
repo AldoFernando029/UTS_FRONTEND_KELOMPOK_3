@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kalender Event - Wisata Nusantara</title>
+  <link rel="stylesheet" href="kalender.css">
+</head>
+<body>
+  <!-- NAVBAR -->
+  <header class="top-nav">
+    <div class="nav-left">
+      <a href="homepage.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="wishlist.html">Wishlist</a>
+      <a class="active" href="kalender.html">Kalender</a>
+    </div>
+    <div class="nav-right">
+      <input type="text" placeholder="Cari destinasi...">
+    </div>
+  </header>
+
+  <!-- KONTEN KALENDER -->
+  <main class="calendar-page">
+    <!-- Gambar di sebelah kiri -->
+    <section class="calendar-left">
+      <img src="img/lombok.jpg" alt="Event Budaya Indonesia" class="calendar-img" id="mainEventImage">
+    </section>
+
+    <!-- Kalender di kanan -->
+    <section class="calendar-right">
+      <h2>Kalender Event</h2>
+
+      <!-- Navigasi bulan -->
+      <div class="calendar-nav">
+        <button id="prevMonth">&lt;</button>
+        <h3 id="monthYear"></h3>
+        <button id="nextMonth">&gt;</button>
+      </div>
+
+      <!-- Header hari -->
+      <div class="calendar-grid calendar-header">
+        <div>Sen</div>
+        <div>Sel</div>
+        <div>Rab</div>
+        <div>Kam</div>
+        <div>Jum</div>
+        <div>Sab</div>
+        <div>Min</div>
+      </div>
+
+      <!-- Isi tanggal -->
+      <div class="calendar-grid" id="days"></div>
+
+      <div class="calendar-info">
+        <p>🛈 Klik tanggal yang ditandai untuk melihat detail dan gambar event budaya Indonesia.</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- POPUP EVENT -->
+  <div class="popup" id="popup">
+    <div class="popup-content">
+      <img id="eventImage" src="" alt="Gambar Event">
+      <h3 id="eventTitle"></h3>
+      <p id="eventDetails"></p>
+      <button id="closePopup">Tutup</button>
+    </div>
+  </div>
+
+  <!-- SCRIPT -->
+  <script src="script.js"></script>
+</body>
+</html>

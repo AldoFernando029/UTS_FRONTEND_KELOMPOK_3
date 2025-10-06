@@ -120,72 +120,85 @@ function removeWishlist(name) {
     renderWishlist();
 }
 
-// kalender
+// Render kalender
 let currentDate = new Date();
 function renderCalendar() {
     const year = currentDate.getFullYear();
     const month = currentDate.getMonth();
-    document.getElementById("monthYear").textContent =
-        currentDate.toLocaleDateString("id-ID", { month:"long", year:"numeric" });
+    const monthYearEl = document.getElementById("monthYear");
     const daysContainer = document.getElementById("days");
+
+    if(!monthYearEl || !daysContainer) return;
+
+    monthYearEl.textContent = currentDate.toLocaleDateString("id-ID", { month:"long", year:"numeric" });
     daysContainer.innerHTML = "";
 
+    // Hari pertama (Senin=0)
     const firstDay = (new Date(year, month, 1).getDay() + 6) % 7;
     const lastDate = new Date(year, month+1, 0).getDate();
 
     for (let i=0; i<firstDay; i++) {
-        daysContainer.appendChild(document.createElement("div"));
+        const emptyDiv = document.createElement("div");
+        emptyDiv.className = "empty";
+        daysContainer.appendChild(emptyDiv);
     }
 
     for (let day=1; day<=lastDate; day++) {
-        const dateStr = `${year}-${String(month+1).padStart(2,'0')}-${String(day).padStart(2,'0')}`;
         const div = document.createElement("div");
         div.className = "day";
         div.textContent = day;
-        if (events[dateStr]) {
+
+        const dateStr = `${year}-${String(month+1).padStart(2,'0')}-${String(day).padStart(2,'0')}`;
+        if(events[dateStr]) {
             div.classList.add("event-day");
             div.onclick = () => showPopup(events[dateStr]);
+        } else {
+            div.onclick = null;
         }
+
+        // Tandai hari ini
+        const today = new Date();
+        if(day===today.getDate() && month===today.getMonth() && year===today.getFullYear()) {
+            div.classList.add("today");
+        }
+
         daysContainer.appendChild(div);
     }
 }
-function prevMonth(){ currentDate.setMonth(currentDate.getMonth()-1); renderCalendar(); }
-function nextMonth(){ currentDate.setMonth(currentDate.getMonth()+1); renderCalendar(); }
 
-// popup
+// Navigasi bulan
+document.getElementById("prevMonth")?.addEventListener("click", () => {
+    currentDate.setMonth(currentDate.getMonth() - 1);
+    renderCalendar();
+});
+document.getElementById("nextMonth")?.addEventListener("click", () => {
+    currentDate.setMonth(currentDate.getMonth() + 1);
+    renderCalendar();
+});
+
+// Popup event
 function showPopup(event) {
+    const popup = document.getElementById("popup");
+    if(!popup) return;
+
     document.getElementById("eventTitle").textContent = event.title;
     document.getElementById("eventDetails").textContent = event.details;
-    document.getElementById("popup").style.display = "flex";
+    document.getElementById("eventImage").src = event.img || "bali.png";
+
+    // Ganti gambar di sebelah kiri kalender
+    const mainImg = document.getElementById("mainEventImage");
+    if(mainImg && event.img) mainImg.src = event.img;
+
+    popup.style.display = "flex";
 }
-function closePopup() {
+document.getElementById("closePopup")?.addEventListener("click", () => {
     document.getElementById("popup").style.display = "none";
-}
+});
 
-// Fungsi untuk transisi dari landing page ke main content (DIPERBAIKI)
-window.handleGetStarted = () => {
-    const landingPage = document.getElementById('landingPage');
-    const mainContent = document.getElementById('mainContent');
-
-    if (landingPage && mainContent) {
-        landingPage.style.display = 'none';
-        mainContent.style.display = 'block';
-        window.showPage('calendar'); 
-        window.scrollTo(0, 0);
-    }
-};
-
-// Fungsi untuk kembali ke landing page (dipanggil oleh tombol 'Beranda')
-window.revertToLandingPage = () => {
-    const landingPage = document.getElementById('landingPage');
-    const mainContent = document.getElementById('mainContent');
-
-    if (landingPage && mainContent) {
-        mainContent.style.display = 'none';
-        landingPage.style.display = 'flex';
-        window.scrollTo(0, 0);
-    }
-}
+// Inisialisasi kalender
+document.addEventListener("DOMContentLoaded", () => {
+    renderCalendar();
+});
 
 // Inisialisasi
 document.addEventListener('DOMContentLoaded', () => {

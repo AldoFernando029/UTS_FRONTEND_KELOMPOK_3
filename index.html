@@ -8,88 +8,21 @@
 </head>
 <body>
     
-    <section id="landingPage">
-        <img src="homepageawal.png" alt="Welcome to Wisata Nusantara" class="landing-image">
+    <!-- LANDING PAGE -->
+    <section id="landingPage" class="landing-page">
+        <img src="img/homepageawal.png" alt="Welcome to Wisata Nusantara" class="landing-image">
         <div class="landing-content">
             <h1>WELCOME TO WISATA NUSANTARA</h1>
+            <p>Temukan destinasi wisata & event budaya di Indonesia</p>
             <button id="getStartedBtn">Get Started</button>
         </div>
     </section>
-    
-    <div id="mainContent" style="display:none;">
-        <header>
-            <h1>🌏 Wisata Nusantara</h1>
-            <p>Temukan destinasi wisata & event budaya di Indonesia</p>
-        </header>
 
-        <nav>
-            <div class="nav-left">
-                <button onclick="revertToLandingPage()">Beranda</button>
-                <button onclick="showPage('wishlist')">Wishlist</button>
-                <button onclick="showPage('calendar')">Kalender</button>
-                <button onclick="showPage('destinations')">Destination</button> 
-            </div>
-            <div class="nav-right">
-                <input type="text" id="search" placeholder="Cari destinasi..." onkeyup="searchDestinasi()">
-            </div>
-        </nav>
-
-        <div id="home" class="page">
-            <section id="hero">
-                <img id="heroImg" src="lombok.jpg" alt="Lombok"> 
-                <div class="hero-text">
-                    <h1 id="heroTitle">Lombok</h1>
-                    <p id="heroSubtitle">Destinasi Impianmu 🌴✨</p>
-                </div>
-            </section>
-
-            <div class="carousel-wrapper">
-                <div class="carousel" id="carousel"></div>
-            </div>
-        </div>
-
-        <div id="destinations" class="page" style="display:none;">
-            <h2>Hasil Pencarian</h2>
-            <div id="destinationsList"></div>
-        </div>
-
-        <div id="wishlist" class="page" style="display:none;">
-            <h2>Wishlist Destinasi</h2>
-            <div id="wishlistList"></div>
-        </div>
-
-        <div id="calendar" class="page" style="display:none;">
-            <h2>Kalender Event</h2>
-            <div class="calendar">
-                <div class="calendar-nav">
-                    <button onclick="prevMonth()">&lt;</button>
-                    <h2 id="monthYear"></h2>
-                    <button onclick="nextMonth()">&gt;</button>
-                </div>
-
-                <div class="calendar-grid calendar-header">
-                    <div>Sen</div>
-                    <div>Sel</div>
-                    <div>Rab</div>
-                    <div>Kam</div>
-                    <div>Jum</div>
-                    <div>Sab</div>
-                    <div>Min</div>
-                </div>
-
-                <div class="calendar-grid" id="days"></div>
-            </div>
-        </div>
-        
-        <div class="popup" id="popup">
-            <div class="popup-content">
-                <h3 id="eventTitle"></h3>
-                <p id="eventDetails"></p>
-                <button onclick="closePopup()">Tutup</button>
-            </div>
-        </div>
-    </div>
-    
-    <script src="script.js"></script>
+    <script>
+        // Arahkan ke home.html saat tombol Get Started diklik
+        document.getElementById('getStartedBtn').addEventListener('click', () => {
+            window.location.href = 'homepage.html';
+        });
+    </script>
 </body>
 </html>
