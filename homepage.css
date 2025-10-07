@@ -1,0 +1,211 @@
+/* GLOBAL */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f5f5f5;
+  color: #333;
+}
+
+/* NAVBAR */
+.top-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+  background: #0077cc;
+  color: white;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.nav-left {
+  display: flex;
+  gap: 25px;
+}
+
+.top-nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 16px;
+  transition: opacity 0.3s;
+  padding-bottom: 3px;
+}
+
+.top-nav a:hover {
+  opacity: 0.8;
+}
+
+.top-nav a.active {
+  border-bottom: 3px solid white;
+  font-weight: 700;
+}
+
+.nav-right input {
+  padding: 8px 15px;
+  border-radius: 6px;
+  border: none;
+  font-size: 14px;
+  width: 250px;
+}
+
+.nav-right input:focus {
+  outline: 2px solid white;
+}
+
+ /* HERO SECTION */
+#hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#hero img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  transition: opacity 0.6s ease;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.4);
+  z-index: 2;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  max-width: 1100px;
+  padding: 20px;
+}
+
+.hero-content h1 {
+  font-size: 3.5rem;
+  margin-bottom: 10px;
+}
+
+.hero-content p {
+  font-size: 1.2rem;
+  margin-bottom: 40px;
+}
+
+/* CAROUSEL BESAR DI HERO */
+.carousel-container {
+  position: relative;
+  margin: 250px auto 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+  overflow: hidden;
+}
+
+.carousel-wrapper {
+  overflow: hidden;
+  width: 80%;
+}
+
+.carousel {
+  display: flex;
+  gap: 20px;
+  transition: transform 0.5s ease;
+  padding: 20px 0;
+}
+
+.carousel-card {
+  position: relative;
+  flex: 0 0 600px; 
+  height: 200px;
+  border-radius: 20px;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.carousel-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+/* Hover effect */
+.carousel-card:hover img {
+  transform: scale(1.05);
+}
+
+.carousel-card::after {
+  content: attr(data-name);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px 0;
+  font-size: 22px;
+  font-weight: 600;
+  color: white;
+  text-align: center;
+  background: rgba(0,0,0,0.6);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.carousel-card:hover::after {
+  opacity: 1;
+}
+
+/* Tombol kiri-kanan */
+.carousel-btn {
+  background: rgba(0,0,0,0.3);
+  border: none;
+  color: white;
+  font-size: 35px;
+  padding: 10px 16px;
+  border-radius: 50%;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  transition: background 0.3s;
+}
+
+.carousel-btn.left { left: 0; }
+.carousel-btn.right { right: 0; }
+
+.carousel-btn:hover {
+  background: rgba(0,0,0,0.6);
+}
+
+/* Tombol scroll search */
+.scroll-search {
+  margin-top: 50px;
+}
+
+.scroll-search button {
+  padding: 12px 25px;
+  font-size: 16px;
+  border: none;
+  border-radius: 10px;
+  background: #0077cc;
+  color: white;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.scroll-search button:hover {
+  background: #005fa3;
+}

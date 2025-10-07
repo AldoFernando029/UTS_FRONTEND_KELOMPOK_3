@@ -1,0 +1,101 @@
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  color: #fff;
+  overflow-x: hidden;
+}
+
+/* NAVBAR */
+.top-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+  background: #0077cc;
+  color: white;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.nav-left {
+  display: flex;
+  gap: 25px;
+}
+
+.top-nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 16px;
+  transition: opacity 0.3s;
+  padding-bottom: 3px;
+}
+
+.top-nav a:hover {
+  opacity: 0.8;
+}
+
+.top-nav a.active {
+  border-bottom: 3px solid white;
+  font-weight: 700;
+}
+
+.nav-right input {
+  padding: 8px 15px;
+  border-radius: 6px;
+  border: none;
+  font-size: 14px;
+  width: 250px;
+}
+
+.nav-right input:focus {
+  outline: 2px solid white;
+}
+
+/* ABOUT SECTION */
+#about {
+  position: relative;
+  min-height: 100vh;
+  background: url("about.png") no-repeat center center/cover;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* teks di kiri */
+  padding: 120px 80px;
+}
+
+.about-content {
+  position: relative;
+  z-index: 2;
+  max-width: 600px;
+  text-align: left; /* kiri semua */
+}
+
+.about-content h1 {
+  font-size: 2.8rem;
+  margin-bottom: 25px;
+  color: #000000;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.3); /* lembut aja */
+}
+
+.about-content p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #000000;
+  margin-bottom: 20px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  #about {
+    padding: 120px 30px;
+  }
+
+  .about-content h1 {
+    font-size: 2rem;
+  }
+}

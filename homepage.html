@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wisata Nusantara - Home</title>
+  <link rel="stylesheet" href="homepage.css">
+</head>
+<body>
+  <!-- NAVBAR -->
+  <header class="top-nav">
+    <div class="nav-left">
+      <a class="active" href="homepage.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="wishlist.html">Wishlist</a>
+      <a href="kalender.html">Kalender</a>
+    </div>
+    <div class="nav-right">
+      <input id="search" type="text" placeholder="Cari destinasi..." oninput="searchDestinasi()">
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section id="hero">
+    <img id="heroImg" src="img/lombok.jpg" alt="Lombok">
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+      <h1 id="heroTitle">Lombok</h1>
+      <p id="heroSubtitle">Destinasi Impianmu 🌴✨</p>
+
+      <!-- CAROUSEL DALAM HERO -->
+      <div class="carousel-container">
+        <button class="carousel-btn left" onclick="prevSlide()">&#10094;</button>
+        <div class="carousel-wrapper">
+          <div class="carousel" id="carousel"></div>
+        </div>
+        <button class="carousel-btn right" onclick="nextSlide()">&#10095;</button>
+      </div>
+
+      <!-- Tombol scroll ke search -->
+      <div class="scroll-search">
+        <button onclick="scrollToSearch()">Search for more destinations ⬇️</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- DESTINASI -->
+  <div id="destinations" class="page">
+    <h2>Hasil Pencarian</h2>
+    <div id="destinationsList"></div>
+  </div>
+
+  <script src="home.js"></script>
+  <script>
+    function scrollToSearch() {
+      const destSection = document.getElementById("destinations");
+      if(destSection) destSection.scrollIntoView({ behavior: "smooth" });
+    }
+  </script>
+</body>
+</html>
