@@ -1,43 +1,32 @@
-// Data destinasi
-const destinations = [
-    {name:"Borobudur", img:"borobudur.jpg", desc:"Candi megah, sejarah Buddha, dan sunrise ikonik."},
-    {name:"Labuan Bajo", img:"labuanbajo.jpg", desc:"Gerbang Pulau Komodo, laut biru, dan sunset indah."},
-    {name:"Danau Toba", img:"danautoba.jpg", desc:"Danau vulkanik terbesar, Pulau Samosir, dan budaya Batak."},
-    {name:"Bali", img:"bali.png", desc:"Pantai, budaya, dan festival unik."},
-    {name:"Lombok", img:"lombok.jpg", desc:"Pantai eksotis, Gunung Rinjani, dan tradisi Sasak."},
-    {name:"Raja Ampat", img:"rajaampat.jpg", desc:"Surga bawah laut di Papua Barat."},
-    {name:"Gunung Bromo", img:"gunungbromo.jpg", desc:"Lautan pasir, sunrise spektakuler, dan kawah aktif."},
-    {name:"Kawah Ijen", img:"kawahijen.jpg", desc:"Api biru, danau asam, dan penambang belerang."},
-    {name:"Pulau Komodo", img:"pulaukomodo.png", desc:"Habitat komodo, trekking alam, dan panorama savana."},
-    {name:"Bunaken", img:"bunaken.jpg", desc:"Taman laut, terumbu karang, dan surga snorkeling-diving."}
-];
-
-// Acara spesial
+//  ACARA SPESIAL 
 const events = {
-    "2025-03-21": {title:"Nyepi : 21 Maret", details:"Hari raya Nyepi di Bali, suasana hening seharian penuh.", place:"Bali"},
-    "2025-06-01": {title:"Festival Danau Toba : 1 juni", details:"Pertunjukan budaya Batak, musik, dan lomba perahu tradisional.", place:"Danau Toba"},
-    "2025-07-15": {title:"Yadnya Kasada : 15 Juli", details:"Upacara adat Suku Tengger di Gunung Bromo.", place:"Gunung Bromo"},
-    "2025-09-25": {title:"Festival Komodo : 25 september", details:"Pawai budaya dan atraksi di Labuan Bajo.", place:"Labuan Bajo"},
-    "2025-11-10": {title:"Festival Banyuwangi : 10 november", details:"Acara seni dan budaya khas Banyuwangi dekat Kawah Ijen.", place:"Kawah Ijen"}
+    "2025-03-21": { title: "Nyepi : 21 Maret", img:"img/bali.jpg", details: "Hari raya Nyepi di Bali, suasana hening seharian penuh.", place: "Bali" },
+    "2025-06-01": { title: "Festival Danau Toba : 1 Juni", img:"img/danautoba1.jpg", details: "Pertunjukan budaya Batak, musik, dan lomba perahu tradisional.", place: "Danau Toba" },
+    "2025-07-15": { title: "Yadnya Kasada : 15 Juli", details: "Upacara adat Suku Tengger di Gunung Bromo.", place: "Gunung Bromo" },
+    "2025-09-25": { title: "Festival Komodo : 25 September", details: "Pawai budaya dan atraksi di Labuan Bajo.", place: "Labuan Bajo" },
+    "2025-11-10": { title: "Festival Banyuwangi : 10 November", details: "Acara seni dan budaya khas Banyuwangi dekat Kawah Ijen.", place: "Kawah Ijen" }
 };
 
+let destinations = [];
 let wishlist = [];
 
-// Navigasi
-function showPage(page) {
-    // Sembunyikan semua page (termasuk home)
-    document.querySelectorAll('.page').forEach(p => p.style.display = 'none');
-    
-    // Tampilkan halaman yang diminta
-    document.getElementById(page).style.display = "block"; 
 
-    if(page === "wishlist") renderWishlist();
-    if(page === "calendar") renderCalendar();
+// NAVIGASI HALAMAN
+function showPage(page) {
+    document.querySelectorAll('.page').forEach(p => p.style.display = 'none');
+    const selected = document.getElementById(page);
+    if (selected) selected.style.display = "block";
+
+    if (page === "wishlist") renderWishlist();
+    if (page === "calendar") renderCalendar();
 }
 
-// Carousel
+
+// CAROUSEL 
 function renderCarousel() {
     const car = document.getElementById("carousel");
+    if (!car || !destinations.length) return;
+
     car.innerHTML = "";
     destinations.forEach(d => {
         const card = document.createElement("div");
@@ -47,34 +36,48 @@ function renderCarousel() {
         car.appendChild(card);
     });
 }
+
 function changeBackground(title, imgUrl) {
-    document.getElementById("heroImg").src = imgUrl;
-    document.getElementById("hero").style.setProperty("--bg", `url('${imgUrl}')`);
-    document.getElementById("heroTitle").innerText = title;
-    document.getElementById("heroSubtitle").innerText = "Destinasi Impianmu 🌴✨";
+    const heroImg = document.getElementById("heroImg");
+    const hero = document.getElementById("hero");
+    const heroTitle = document.getElementById("heroTitle");
+    const heroSubtitle = document.getElementById("heroSubtitle");
+
+    if (heroImg) heroImg.src = imgUrl;
+    if (hero) hero.style.setProperty("--bg", `url('${imgUrl}')`);
+    if (heroTitle) heroTitle.innerText = title;
+    if (heroSubtitle) heroSubtitle.innerText = "Destinasi Impianmu 🌴✨";
 }
 
-// Search destinasi
+
+//  PENCARIAN DESTINASI
 function searchDestinasi() {
     const q = document.getElementById("search").value.toLowerCase();
-    if(q === ""){
-        document.getElementById("destinations").style.display="none";
-        showPage('home'); 
+    if (q === "") {
+        document.getElementById("destinations").style.display = "none";
+        showPage('home');
         return;
     }
+
     document.querySelectorAll('.page').forEach(p => p.style.display = 'none');
     document.getElementById('destinations').style.display = 'block';
-    
+
     const filtered = destinations.filter(d => d.name.toLowerCase().includes(q));
     renderDestinations(filtered);
 }
+
+
+// RENDER DESTINASI 
 function renderDestinations(list) {
     const container = document.getElementById("destinationsList");
+    if (!container) return;
+
     container.innerHTML = "";
-    if(list.length === 0){
+    if (list.length === 0) {
         container.innerHTML = "<p>Tidak ada destinasi ditemukan.</p>";
         return;
     }
+
     list.forEach(d => {
         const card = document.createElement("div");
         card.className = "card";
@@ -88,16 +91,60 @@ function renderDestinations(list) {
     });
 }
 
-// wishlist
+// WISHLIST
 function addWishlist(name) {
     if (!wishlist.includes(name)) {
         wishlist.push(name);
         renderWishlist();
     }
+
+    const wishlistPage = document.getElementById("wishlist");
+    if (wishlistPage) {
+        showPage('wishlist');
+    } else {
+        console.warn("Halaman wishlist tidak ditemukan di HTML.");
+    }
+
+    const d = destinations.find(x => x.name === name);
+    if (!d) return;
+
+    // Ambil data dari localStorage (kalau belum ada, buat array kosong)
+    let storedWishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+
+    // Cek apakah destinasi sudah ada di wishlist
+    if (!storedWishlist.some(item => item.name === d.name)) {
+        // Tambahkan destinasi ke localStorage
+        storedWishlist.push({
+            name: d.name,
+            img: d.img,
+            desc: d.desc
+        });
+        localStorage.setItem('wishlist', JSON.stringify(storedWishlist));
+        alert(`${d.name} ditambahkan ke wishlist!`);
+    } else {
+        alert(`${d.name} sudah ada di wishlist.`);
+    }
+
+    // Arahkan ke halaman wishlist.html
+    window.location.href = "wishlist.html";
 }
+
+
+
 function renderWishlist() {
     const container = document.getElementById("wishlistList");
+    if (!container) {
+        console.warn("Elemen wishlistList tidak ditemukan di HTML.");
+        return;
+    }
+
     container.innerHTML = "";
+
+    if (wishlist.length === 0) {
+        container.innerHTML = "<p>Belum ada destinasi di wishlist kamu.</p>";
+        return;
+    }
+
     wishlist.forEach(name => {
         const d = destinations.find(x => x.name === name);
         if (d) {
@@ -115,50 +162,44 @@ function renderWishlist() {
         }
     });
 }
-function removeWishlist(name) {
-    wishlist = wishlist.filter(x => x !== name);
-    renderWishlist();
-}
 
-// Render kalender
+
+// KALENDER
 let currentDate = new Date();
+
 function renderCalendar() {
     const year = currentDate.getFullYear();
     const month = currentDate.getMonth();
     const monthYearEl = document.getElementById("monthYear");
     const daysContainer = document.getElementById("days");
 
-    if(!monthYearEl || !daysContainer) return;
+    if (!monthYearEl || !daysContainer) return;
 
-    monthYearEl.textContent = currentDate.toLocaleDateString("id-ID", { month:"long", year:"numeric" });
+    monthYearEl.textContent = currentDate.toLocaleDateString("id-ID", { month: "long", year: "numeric" });
     daysContainer.innerHTML = "";
 
-    // Hari pertama (Senin=0)
     const firstDay = (new Date(year, month, 1).getDay() + 6) % 7;
-    const lastDate = new Date(year, month+1, 0).getDate();
+    const lastDate = new Date(year, month + 1, 0).getDate();
 
-    for (let i=0; i<firstDay; i++) {
+    for (let i = 0; i < firstDay; i++) {
         const emptyDiv = document.createElement("div");
         emptyDiv.className = "empty";
         daysContainer.appendChild(emptyDiv);
     }
 
-    for (let day=1; day<=lastDate; day++) {
+    for (let day = 1; day <= lastDate; day++) {
         const div = document.createElement("div");
         div.className = "day";
         div.textContent = day;
 
-        const dateStr = `${year}-${String(month+1).padStart(2,'0')}-${String(day).padStart(2,'0')}`;
-        if(events[dateStr]) {
+        const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+        if (events[dateStr]) {
             div.classList.add("event-day");
             div.onclick = () => showPopup(events[dateStr]);
-        } else {
-            div.onclick = null;
         }
 
-        // Tandai hari ini
         const today = new Date();
-        if(day===today.getDate() && month===today.getMonth() && year===today.getFullYear()) {
+        if (day === today.getDate() && month === today.getMonth() && year === today.getFullYear()) {
             div.classList.add("today");
         }
 
@@ -166,7 +207,6 @@ function renderCalendar() {
     }
 }
 
-// Navigasi bulan
 document.getElementById("prevMonth")?.addEventListener("click", () => {
     currentDate.setMonth(currentDate.getMonth() - 1);
     renderCalendar();
@@ -176,37 +216,46 @@ document.getElementById("nextMonth")?.addEventListener("click", () => {
     renderCalendar();
 });
 
-// Popup event
+
+// POPUP EVENT 
 function showPopup(event) {
     const popup = document.getElementById("popup");
-    if(!popup) return;
+    if (!popup) return;
 
     document.getElementById("eventTitle").textContent = event.title;
     document.getElementById("eventDetails").textContent = event.details;
     document.getElementById("eventImage").src = event.img || "bali.png";
 
-    // Ganti gambar di sebelah kiri kalender
     const mainImg = document.getElementById("mainEventImage");
-    if(mainImg && event.img) mainImg.src = event.img;
+    if (mainImg && event.img) mainImg.src = event.img;
 
     popup.style.display = "flex";
 }
+
 document.getElementById("closePopup")?.addEventListener("click", () => {
     document.getElementById("popup").style.display = "none";
 });
 
-// Inisialisasi kalender
-document.addEventListener("DOMContentLoaded", () => {
-    renderCalendar();
-});
 
-// Inisialisasi
+//  INISIALISASI
 document.addEventListener('DOMContentLoaded', () => {
-    const getStartedBtn = document.getElementById('getStartedBtn');
-    if (getStartedBtn) {
-        getStartedBtn.onclick = window.handleGetStarted;
+
+    // destinasi.html
+    if (window.location.pathname.includes("destinasi.html")) {
+        fetch("destinasi.json")
+            .then(res => res.json())
+            .then(data => {
+                destinations = data;
+                renderDestinations(destinations);
+            })
+            .catch(err => console.error("Gagal memuat destinasi.json:", err));
+        return;
     }
-    
+
+    // halaman utama (home)
+    const getStartedBtn = document.getElementById('getStartedBtn');
+    if (getStartedBtn) getStartedBtn.onclick = window.handleGetStarted;
+
     renderCarousel();
     renderWishlist();
     renderCalendar();
@@ -215,11 +264,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (heroImg) {
         document.getElementById("hero").style.setProperty("--bg", `url('${heroImg.src}')`);
     }
-    
-    // Sembunyikan konten utama di awal dan tampilkan landing page
-    document.getElementById('mainContent').style.display = 'none';
-    window.revertToLandingPage();
+
+    showPage('hero');
 });
 
-// Tambahkan window.showPage agar bisa dipanggil dari HTML
-window.showPage = showPage;

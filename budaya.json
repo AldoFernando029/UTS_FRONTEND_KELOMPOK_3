@@ -10,11 +10,11 @@
     },
     {
       "id": 2,
-      "nama": "Festival Lompat Batu",
-      "lokasi": "Nias, Sumatera Utara",
-      "deskripsi": "Tradisi lompat batu setinggi dua meter sebagai simbol kedewasaan pemuda Nias.",
-      "kategori": "Tradisi",
-      "images": ["img/lompatbatu1.jpg", "img/lompatbatu2.jpg"]
+      "nama": "Ritual Tiwah",
+      "lokasi": "Kalimantan Tengah",
+      "deskripsi": "Upacara adat masyarakat Dayak Ngaju untuk menghormati arwah leluhur dengan prosesi pengumpulan tulang belulang.",
+      "kategori": "Upacara Adat",
+      "images": ["img/tiwah1.jpeg", "img/tiwah2.jpg"]
     },
     {
       "id": 3,
@@ -39,6 +39,64 @@
       "deskripsi": "Festival penyambutan bulan Ramadan dengan kirab budaya dan ikon Warak Ngendog.",
       "kategori": "Festival",
       "images": ["img/dugderan1.jpg", "img/dugderan2.jpg"]
+    },
+    {
+      "id": 6,
+      "nama": "Makepung",
+      "lokasi": "Jembrana, Bali",
+      "deskripsi": "Balapan kerbau khas Bali yang menjadi ajang perayaan dan hiburan masyarakat petani.",
+      "kategori": "Tradisi",
+      "images": ["img/makepung1.jpg", "img/makepung2.jpg"]
+    },
+    {
+      "id": 7,
+      "nama": "Pasola",
+      "lokasi": "Sumba, Nusa Tenggara Timur",
+      "deskripsi": "Tradisi perang tombak di atas kuda sebagai bentuk syukur atas panen dan penghormatan leluhur.",
+      "kategori": "Tradisi",
+      "images": ["img/pasola1.jpg", "img/pasola2.jpg"]
+    },
+    {
+      "id": 8,
+      "nama": "Seren Taun",
+      "lokasi": "Kuningan, Jawa Barat",
+      "deskripsi": "Upacara adat sebagai ungkapan syukur masyarakat Sunda atas hasil panen.",
+      "kategori": "Upacara Adat",
+      "images": ["img/serentaun1.jpg", "img/serentaun2.jpg"]
+    },
+    {
+      "id": 9,
+      "nama": "Bakar Batu",
+      "lokasi": "Papua",
+      "deskripsi": "Tradisi memasak bersama menggunakan batu panas sebagai bentuk kebersamaan dan rasa syukur.",
+      "kategori": "Tradisi",
+      "images": ["img/bakarbatu1.jpg", "img/bakarbatu2.jpg"]
+    },
+    {
+      "id": 10,
+      "nama": "Festival Danau Toba",
+      "lokasi": "Sumatera Utara",
+      "deskripsi": "Festival tahunan menampilkan seni Batak, lomba perahu, dan kuliner khas sekitar Danau Toba.",
+      "kategori": "Festival",
+      "images": ["img/danautoba1.jpg", "img/danautoba2.jpg"]
+    },
+    {
+      "id": 11,
+      "nama": "Festival Lembah Baliem",
+      "lokasi": "Wamena, Papua",
+      "deskripsi": "Festival perang suku yang kini menjadi simbol perdamaian dan ajang promosi budaya Papua.",
+      "kategori": "Festival",
+      "images": ["img/lembahbaliem1.jpg", "img/lembahbaliem2.jpg"]
+    },
+    {
+      "id": 12,
+      "nama": "Festival Reog Ponorogo",
+      "lokasi": "Ponorogo, Jawa Timur",
+      "deskripsi": "Festival yang menampilkan kesenian Reog khas Ponorogo dengan topeng singa barong megah.",
+      "kategori": "Festival",
+      "images": ["img/reogponorogo1.jpg", "img/reogponorogo2.jpg"]
     }
   ]
 }
+
+
