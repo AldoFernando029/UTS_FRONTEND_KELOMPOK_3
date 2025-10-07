@@ -52,7 +52,7 @@ body {
   outline: 2px solid white;
 }
 
- /* HERO SECTION */
+/* HERO SECTION */
 #hero {
   position: relative;
   width: 100%;
@@ -208,4 +208,20 @@ body {
 
 .scroll-search button:hover {
   background: #005fa3;
+}
+
+/* DESTINASI LIST */
+.destination-item { /* style tiap destinasi dari JSON */
+  background: white;
+  margin: 20px;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.destination-item img { /* gambar destinasi */
+  display: block;
+  margin-top: 10px;
+  max-width: 100%;
+  border-radius: 10px;
 }

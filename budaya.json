@@ -1,0 +1,44 @@
+{
+  "budaya": [
+    {
+      "id": 1,
+      "nama": "Karapan Sapi",
+      "lokasi": "Madura, Jawa Timur",
+      "deskripsi": "Perlombaan pacuan sapi tradisional yang menjadi pesta rakyat masyarakat Madura.",
+      "kategori": "Tradisi",
+      "images": ["img/karapansapi1.jpg", "img/karapansapi2.jpg"]
+    },
+    {
+      "id": 2,
+      "nama": "Festival Lompat Batu",
+      "lokasi": "Nias, Sumatera Utara",
+      "deskripsi": "Tradisi lompat batu setinggi dua meter sebagai simbol kedewasaan pemuda Nias.",
+      "kategori": "Tradisi",
+      "images": ["img/lompatbatu1.jpg", "img/lompatbatu2.jpg"]
+    },
+    {
+      "id": 3,
+      "nama": "Kasada",
+      "lokasi": "Gunung Bromo, Jawa Timur",
+      "deskripsi": "Upacara persembahan masyarakat Tengger untuk Sang Hyang Widhi, dilakukan setiap 14 Kasada.",
+      "kategori": "Upacara Adat",
+      "images": ["img/kasada1.jpg", "img/kasada2.jpg"]
+    },
+    {
+      "id": 4,
+      "nama": "Ngaben",
+      "lokasi": "Bali",
+      "deskripsi": "Upacara pembakaran jenazah umat Hindu Bali sebagai simbol penyucian roh menuju nirwana.",
+      "kategori": "Upacara Adat",
+      "images": ["img/ngaben1.jpg", "img/ngaben2.jpg"]
+    },
+    {
+      "id": 5,
+      "nama": "Dugderan",
+      "lokasi": "Semarang, Jawa Tengah",
+      "deskripsi": "Festival penyambutan bulan Ramadan dengan kirab budaya dan ikon Warak Ngendog.",
+      "kategori": "Festival",
+      "images": ["img/dugderan1.jpg", "img/dugderan2.jpg"]
+    }
+  ]
+}

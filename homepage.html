@@ -33,7 +33,7 @@
       <div class="carousel-container">
         <button class="carousel-btn left" onclick="prevSlide()">&#10094;</button>
         <div class="carousel-wrapper">
-          <div class="carousel" id="carousel"></div>
+          <div class="carousel" id="carousel"></div> <!-- carousel akan diisi JS dari budaya.json -->
         </div>
         <button class="carousel-btn right" onclick="nextSlide()">&#10095;</button>
       </div>
@@ -48,11 +48,12 @@
   <!-- DESTINASI -->
   <div id="destinations" class="page">
     <h2>Hasil Pencarian</h2>
-    <div id="destinationsList"></div>
+    <div id="destinationsList"></div> <!-- daftar destinasi akan diisi JS dari budaya.json -->
   </div>
 
   <script src="home.js"></script>
   <script>
+    // scroll ke section destinasi
     function scrollToSearch() {
       const destSection = document.getElementById("destinations");
       if(destSection) destSection.scrollIntoView({ behavior: "smooth" });
