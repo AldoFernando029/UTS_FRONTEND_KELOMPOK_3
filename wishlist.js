@@ -1,36 +1,49 @@
 let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
 
-const wishlistContainer = document.getElementById("wishlistContainer");
-const searchInput = document.getElementById("searchInput");
+const wishlistList = document.getElementById("wishlistList");
 
 function renderWishlist(items) {
-  wishlistContainer.innerHTML = "";
+  wishlistList.innerHTML = "";
 
   if (items.length === 0) {
-    wishlistContainer.innerHTML = `
+    wishlistList.innerHTML = `
       <div class="empty-message">
         <h2>Wishlist kamu masih kosong 😢</h2>
         <p>Yuk, tambahkan destinasi favoritmu sekarang!</p>
-        <button onclick="window.location.href='homepage.html'">Tambah Wishlist</button>
+        <button onclick="window.location.href='destinasi.html'">Tambah Wishlist</button>
       </div>
     `;
     return;
   }
 
   items.forEach((item, index) => {
-    const div = document.createElement("div");
-    div.classList.add("wishlist-item");
-    div.innerHTML = `
+    const rating = item.rating || 0; // default rating
+
+    const card = document.createElement("div");
+    card.classList.add("card");
+
+    // Buat elemen bintang dinamis
+    let starsHTML = "";
+    for (let i = 1; i <= 5; i++) {
+      starsHTML += `
+        <span 
+          class="star ${i <= rating ? "active" : ""}" 
+          onclick="setRating(${index}, ${i})"
+        >★</span>
+      `;
+    }
+
+    card.innerHTML = `
       <img src="${item.img}" alt="${item.name}">
-      <div class="item-info">
-        <h3>${item.name}</h3>
-        <div class="item-buttons">
-          <button class="detail" onclick="viewDetail('${item.name}')">Lihat Detail</button>
-          <button class="remove" onclick="removeItem(${index})">Hapus</button>
-        </div>
+      <h3>${item.name}</h3>
+      <p>${item.desc || ""}</p>
+      <div class="rating">${starsHTML}</div>
+      <div class="btn-group">
+        <button class="remove-btn" onclick="removeItem(${index})">Hapus</button>
       </div>
     `;
-    wishlistContainer.appendChild(div);
+
+    wishlistList.appendChild(card);
   });
 }
 
@@ -40,17 +53,10 @@ function removeItem(index) {
   renderWishlist(wishlist);
 }
 
-searchInput.addEventListener("input", () => {
-  const keyword = searchInput.value.toLowerCase();
-  const filtered = wishlist.filter(item =>
-    item.name.toLowerCase().includes(keyword)
-  );
-  renderWishlist(filtered);
-});
-
-function viewDetail(name) {
-  localStorage.setItem("selectedDestination", name);
-  window.location.href = "detail.html";
+function setRating(index, ratingValue) {
+  wishlist[index].rating = ratingValue;
+  localStorage.setItem("wishlist", JSON.stringify(wishlist));
+  renderWishlist(wishlist);
 }
 
 renderWishlist(wishlist);
