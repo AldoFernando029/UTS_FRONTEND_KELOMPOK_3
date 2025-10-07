@@ -1,0 +1,107 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f9f9f9;
+  color: #333;
+}
+
+/* Navbar */
+.navbar {
+  background-color: #0077cc;
+  color: white;
+  padding: 15px;
+  text-align: center;
+}
+
+/* Search bar */
+.search-section {
+  display: flex;
+  justify-content: center;
+  padding: 15px;
+  background: white;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+#searchInput {
+  width: 80%;
+  max-width: 500px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+}
+
+/* Wishlist container */
+.wishlist-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+/* Card item */
+.wishlist-item {
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  overflow: hidden;
+  transition: transform 0.2s ease;
+}
+
+.wishlist-item:hover {
+  transform: scale(1.03);
+}
+
+.wishlist-item img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.item-info {
+  padding: 15px;
+}
+
+.item-info h3 {
+  margin: 0;
+  font-size: 18px;
+  color: #0077cc;
+}
+
+.item-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.item-buttons button {
+  border: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.item-buttons .detail {
+  background: #0077cc;
+  color: white;
+}
+
+.item-buttons .remove {
+  background: #ff5555;
+  color: white;
+}
+
+/* Jika belum ada wishlist */
+.empty-message {
+  text-align: center;
+  padding: 50px;
+}
+
+.empty-message button {
+  background: #0077cc;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+}
