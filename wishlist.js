@@ -1,4 +1,3 @@
-// Simulasi data wishlist (nanti bisa ganti ke API/localStorage)
 let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
 
 const wishlistContainer = document.getElementById("wishlistContainer");
@@ -35,14 +34,12 @@ function renderWishlist(items) {
   });
 }
 
-// Hapus wishlist item
 function removeItem(index) {
   wishlist.splice(index, 1);
   localStorage.setItem("wishlist", JSON.stringify(wishlist));
   renderWishlist(wishlist);
 }
 
-// Cari destinasi
 searchInput.addEventListener("input", () => {
   const keyword = searchInput.value.toLowerCase();
   const filtered = wishlist.filter(item =>
@@ -51,7 +48,6 @@ searchInput.addEventListener("input", () => {
   renderWishlist(filtered);
 });
 
-// Lihat detail
 function viewDetail(name) {
   localStorage.setItem("selectedDestination", name);
   window.location.href = "detail.html";
