@@ -8,7 +8,7 @@ document.getElementById('getStartedBtn')?.addEventListener('click', () => {
     window.location.href = 'homepage.html'; // ganti ke halaman utama
 });
 
-// Inisialisasi halaman welcome
+// Inisialisasi halaman welcome 
 document.addEventListener('DOMContentLoaded', () => {
     // Bisa tambah animasi atau efek jika ingin
     console.log("Welcome page loaded.");
