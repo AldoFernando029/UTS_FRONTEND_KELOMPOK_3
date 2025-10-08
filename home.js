@@ -1,13 +1,17 @@
 let budayaData = [];
 let currentIndex = 0;
-const visibleCards = 3; // tampilkan 3 kartu sekaligus
+const visibleCards = 3;
+let currentHeroId = 1;
 
-// Ambil data JSON
+// ambil data JSON
 async function loadBudaya() {
   try {
     const res = await fetch("budaya.json");
     const data = await res.json();
     budayaData = data.budaya;
+    if (budayaData.length > 0) {
+      changeBackground(budayaData[0].nama, budayaData[0].images[0], budayaData[0].id);
+    }
     renderCarousel();
     renderDestinations();
   } catch (error) {
@@ -15,7 +19,7 @@ async function loadBudaya() {
   }
 }
 
-// Buat carousel
+// buat carousel
 function renderCarousel() {
   const carousel = document.getElementById("carousel");
   if (!carousel || budayaData.length === 0) return;
@@ -25,8 +29,8 @@ function renderCarousel() {
   budayaData.forEach((d) => {
     const card = document.createElement("div");
     card.className = "carousel-card";
-    card.dataset.name = d.nama;
-    card.onclick = () => changeBackground(d.nama, d.images[0]);
+    card.dataset.name = d.nama.toLowerCase();
+    card.onclick = () => changeBackground(d.nama, d.images[0], d.id);
     card.innerHTML = `<img src="${d.images[0]}" alt="${d.nama}">`;
     carousel.appendChild(card);
   });
@@ -39,36 +43,31 @@ function updateCarousel() {
   if (!carousel) return;
 
   const cards = carousel.querySelectorAll(".carousel-card");
-  if (cards.length === 0) return;
+  if (!cards.length) return;
 
-  // reset semua efek
-  cards.forEach((card) => card.classList.remove("active", "near"));
+  // reset semua
+  cards.forEach(card => card.classList.remove("active", "near"));
 
-  // tentukan posisi tengah supaya 3 kartu aktif berada di tengah
-  const centerOffset = Math.floor(visibleCards / 2);
-
-  for (let i = 0; i < visibleCards; i++) {
-    const index = (currentIndex + i) % cards.length;
-    cards[index].classList.add("active");
-  }
-
-  // buat efek kecil kanan kiri dari cluster aktif
-  const leftIndex = (currentIndex - 1 + cards.length) % cards.length;
-  const rightIndex = (currentIndex + visibleCards) % cards.length;
-  cards[leftIndex].classList.add("near");
-  cards[rightIndex].classList.add("near");
-
-  // posisi supaya cluster 3 kartu aktif selalu di tengah
-  const cardWidth = cards[0].offsetWidth + 25;
   const totalCards = cards.length;
-  const offset =
-    (totalCards * cardWidth) / 2 -
-    ((currentIndex + centerOffset + 0.5) * cardWidth);
+  const centerIndex = (currentIndex + 1) % totalCards; // kartu tengah dari 3 besar
+  const prevIndex = (centerIndex - 1 + totalCards) % totalCards;
+  const nextIndex = (centerIndex + 1) % totalCards;
 
-  carousel.style.transform = `translateX(${offset}px)`;
+  cards[prevIndex].classList.add("near");
+  cards[centerIndex].classList.add("active");
+  cards[nextIndex].classList.add("near");
+
+  // hitung transform supaya kartu tengah selalu di tengah carousel-wrapper
+  const wrapper = carousel.parentElement;
+  const wrapperWidth = wrapper.offsetWidth;
+  const centerCard = cards[centerIndex];
+  const cardLeft = centerCard.offsetLeft + centerCard.offsetWidth / 2;
+  const translateX = wrapperWidth / 2 - cardLeft;
+
+  carousel.style.transform = `translateX(${translateX}px)`;
 }
 
-// tombol next & prev (muter terus)
+// tombol next & prev
 function nextSlide() {
   currentIndex = (currentIndex + 1) % budayaData.length;
   updateCarousel();
@@ -79,41 +78,51 @@ function prevSlide() {
   updateCarousel();
 }
 
-// Ubah background hero
-function changeBackground(title, imgUrl) {
+// ubah background hero & update tombol
+function changeBackground(title, imgUrl, id) {
   const heroImg = document.getElementById("heroImg");
   const heroTitle = document.getElementById("heroTitle");
+  if (heroImg) heroImg.style.opacity = 0;
+  setTimeout(() => {
+    if (heroImg) heroImg.src = imgUrl;
+    if (heroImg) heroImg.style.opacity = 1;
+    if (heroTitle) heroTitle.innerText = title;
+    currentHeroId = id;
+  }, 200);
+}
 
-  if (heroImg) heroImg.src = imgUrl;
-  if (heroTitle) heroTitle.innerText = title;
+// ke halaman detail
+function goDetail(id) {
+  window.location.href = `detailbudaya.html?id=${id}`;
 }
 
 // daftar destinasi
-function renderDestinations() {
+function renderDestinations(filteredData = null) {
   const list = document.getElementById("budayasList");
   if (!list) return;
 
   list.innerHTML = "";
 
-  budayaData.forEach((d) => {
+  const dataToRender = filteredData || budayaData;
+
+  dataToRender.forEach((d) => {
     const item = document.createElement("div");
     item.className = "budaya-card";
     item.innerHTML = `
       <img src="${d.images[0]}" alt="${d.nama}">
       <h3>${d.nama}</h3>
       <p>${d.deskripsi}</p>
-      <button>Pelajari</button>
+      <button onclick="goDetail(${d.id})">Pelajari</button>
     `;
     list.appendChild(item);
   });
 }
 
-// Scroll ke search
-function scrollToSearch() {
-  const destSection = document.getElementById("budaya");
-  if (destSection)
-    destSection.scrollIntoView({ behavior: "smooth" });
+// SEARCH FUNCTION
+function searchBudaya() {
+  const input = document.getElementById("searchInput").value.toLowerCase();
+  const filtered = budayaData.filter(d => d.nama.toLowerCase().includes(input));
+  renderDestinations(filtered);
 }
 
-// Inisialisasi
 document.addEventListener("DOMContentLoaded", loadBudaya);

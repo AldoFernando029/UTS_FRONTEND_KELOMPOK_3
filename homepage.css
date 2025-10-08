@@ -5,100 +5,107 @@ body {
   background: #f5f5f5;
   color: #333;
   overflow-x: hidden;
+  scroll-behavior: smooth; /* smooth scroll */
 }
 
 /* NAVBAR */
 .top-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 40px;
-  background: #0077cc;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #9D8334;
   color: white;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-}
-
-.nav-left {
+  padding: 12px 60px;
   display: flex;
-  gap: 25px;
+  justify-content: flex-start;
+  z-index: 100;
 }
 
 .top-nav a {
   color: white;
   text-decoration: none;
+  margin-right: 25px;
   font-weight: 500;
-  font-size: 16px;
-  transition: opacity 0.3s;
+  transition: color 0.3s;
 }
 
-.top-nav a:hover {
-  opacity: 0.8;
-}
-
+.top-nav a:hover,
 .top-nav a.active {
-  border-bottom: 3px solid white;
-  font-weight: 700;
+  color: #000000;
 }
 
 /* HERO SECTION */
 #hero {
-  position: relative;
-  width: 100%;
-  min-height: 85vh; /* dikurangin biar carousel muncul di layar pertama */
-  overflow: hidden;
-  color: white;
+  padding: 60px 10%;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding-top: 80px;
-}
-
-#hero img {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  top: 0;
-  left: 0;
-  z-index: 1;
-  transition: opacity 0.6s ease;
-}
-
-.hero-overlay {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(0,0,0,0.4);
-  z-index: 2;
-}
-
-.hero-content {
-  position: relative;
-  z-index: 3;
+  background: #fff;
   text-align: center;
-  max-width: 900px;
-  padding: 20px;
+  color: #222;
 }
 
 .hero-content h1 {
-  font-size: 3rem;
-  margin-bottom: 10px;
+  font-size: 2.5rem;
+  font-weight: 500;
+  margin-bottom: 30px;
 }
 
-/* CAROUSEL BESAR DI HERO */
+/* HERO IMAGE UTAMA - UKURAN FIXED */
+.hero-main-img {
+  position: relative;
+  width: 100%;
+  max-width: 700px;
+  height: 450px;
+  margin-bottom: 30px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.hero-main-img img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  border-radius: 20px;
+  transition: opacity 0.5s ease; /* smooth transition gambar */
+}
+
+.hero-btn {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #413616;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 16px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.hero-btn:hover {
+  background: #9D8334 ;
+}
+
+/* CAROUSEL KECIL */
 .carousel-container {
   position: relative;
   width: 100%;
-  overflow: visible;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 60px; /* sebelumnya 230px */
-  perspective: 1000px;
+  margin-bottom: 20px;
 }
 
 .carousel-wrapper {
-  width: 1000px; /* sedikit dikecilkan supaya pas */
+  width: 80%;
+  max-width: 700px;
   overflow: hidden;
   display: flex;
   justify-content: center;
@@ -107,46 +114,46 @@ body {
 
 .carousel {
   display: flex;
-  gap: 25px;
-  transition: transform 0.8s ease;
+  transition: transform 0.5s ease;
   will-change: transform;
+  align-items: center;
 }
 
+/* kartu default = kecil */
 .carousel-card {
-  position: relative;
-  width: 240px;
-  height: 300px;
-  border-radius: 20px;
+  width: 120px;
+  height: 160px;
+  border-radius: 12px;
   overflow: hidden;
   flex-shrink: 0;
   opacity: 0.4;
-  transform: scale(0.8);
+  transform: scale(0.7);
   transition: all 0.5s ease;
-  cursor: pointer;
-  pointer-events: none;
+  cursor: default;
+  margin: 0 10px; /* jarak antar kartu kecil */
 }
 
 .carousel-card img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 20px;
+  border-radius: 12px;
 }
 
-/* efek buat 3 kartu aktif */
+/* 3 kartu besar di tengah */
 .carousel-card.active {
+  transform: scale(1.3);
   opacity: 1;
-  transform: scale(1.05);
-  z-index: 5;
-  pointer-events: auto;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+  margin: 0 15px; /* jarak antar kartu besar */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  cursor: pointer;
 }
 
-/* efek buat antrian kanan-kiri */
+/* kartu dekat 3 besar */
 .carousel-card.near {
-  opacity: 0.7;
-  transform: scale(0.9);
-  z-index: 3;
+  transform: scale(1);
+  opacity: 0.6;
+  margin: 0 12px; /* jarak antar kartu near */
 }
 
 /* Tombol kiri-kanan */
@@ -154,8 +161,8 @@ body {
   background: rgba(0,0,0,0.3);
   border: none;
   color: white;
-  font-size: 30px;
-  padding: 10px 14px;
+  font-size: 26px;
+  padding: 8px 12px;
   border-radius: 50%;
   cursor: pointer;
   position: absolute;
@@ -165,8 +172,8 @@ body {
   transition: background 0.3s;
 }
 
-.carousel-btn.left { left: 0; }
-.carousel-btn.right { right: 0; }
+.carousel-btn.left { left: -20px; }
+.carousel-btn.right { right: -20px; }
 
 .carousel-btn:hover {
   background: rgba(0,0,0,0.6);
@@ -174,8 +181,7 @@ body {
 
 /* Tombol scroll search */
 .scroll-search {
-  margin-top: 30px;
-  text-align: center;
+  margin-top: 15px;
 }
 
 .scroll-search button {
@@ -183,17 +189,17 @@ body {
   font-size: 16px;
   border: none;
   border-radius: 10px;
-  background: #0077cc;
+  background: #9D8334 ;
   color: white;
   cursor: pointer;
   transition: background 0.3s;
 }
 
 .scroll-search button:hover {
-  background: #005fa3;
+  background: #413616;
 }
 
-/* BAGIAN BUDAYA (KAYAK DESTINASI) */
+/* BAGIAN BUDAYA */
 .page {
   padding: 60px 10%;
   text-align: center;
@@ -201,7 +207,7 @@ body {
 }
 
 .page h2 {
-  color: #0077cc;
+  color: #413616;
   font-size: 2rem;
   margin-bottom: 10px;
 }
@@ -211,7 +217,6 @@ body {
   margin-bottom: 40px;
 }
 
-/* Grid card */
 .budaya-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -251,7 +256,7 @@ body {
 }
 
 .budaya-card button {
-  background: #0077cc;
+  background: #9D8334;
   color: #fff;
   border: none;
   border-radius: 8px;
@@ -262,5 +267,29 @@ body {
 }
 
 .budaya-card button:hover {
-  background: #005fa3;
+  background: #413616;
+}
+
+/* SEARCH BAR */
+.search-container {
+  margin: 40px auto 60px auto; /* jarak atas & bawah */
+  text-align: center;
+  width: 100%;
+  max-width: 500px; /* lebar maksimal */
+}
+
+#searchInput {
+  width: 100%;
+  padding: 12px 20px;
+  font-size: 16px;
+  border: 2px solid #9D8334;
+  border-radius: 12px;
+  outline: none;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transition: all 0.3s;
+}
+
+#searchInput:focus {
+  border-color: #413616;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 }
