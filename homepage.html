@@ -37,23 +37,24 @@
 
       <!-- Tombol scroll ke search -->
       <div class="scroll-search">
-        <button onclick="scrollToSearch()">Search for more destinations ⬇️</button>
+        <button onclick="scrollToSearch()">Search for more Culture ⬇️</button>
       </div>
     </div>
   </section>
 
-  <!-- DESTINASI -->
-  <div id="destinations" class="page">
-    <h2>Hasil Pencarian</h2>
-    <div id="destinationsList"></div> <!-- daftar destinasi akan diisi JS dari budaya.json -->
+  <!-- BUDAYA -->
+  <div id="budaya" class="page">
+    <h2>Budaya Nusantara</h2>
+    <p>Temukan berbagai tradisi dan kekayaan budaya Indonesia 🌺✨</p>
+    <div id="budayasList" class="budaya-grid"></div> <!-- daftar destinasi akan diisi JS dari budaya.json -->
   </div>
 
   <script src="home.js"></script>
   <script>
     // scroll ke section destinasi
     function scrollToSearch() {
-      const destSection = document.getElementById("destinations");
-      if(destSection) destSection.scrollIntoView({ behavior: "smooth" });
+      const budayaSection = document.getElementById("budaya");
+      if(budayaSection) budayaSection.scrollIntoView({ behavior: "smooth" });
     }
   </script>
 </body>

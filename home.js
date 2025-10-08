@@ -1,11 +1,11 @@
-let budayaData = []; // Menyimpan data dari JSON
+let budayaData = [];
 let currentIndex = 0;
-const visibleCards = 3;
+const visibleCards = 3; // tampilkan 3 kartu sekaligus
 
 // Ambil data JSON
 async function loadBudaya() {
   try {
-    const res = await fetch('budaya.json'); // path ke file JSON
+    const res = await fetch("budaya.json");
     const data = await res.json();
     budayaData = data.budaya;
     renderCarousel();
@@ -15,7 +15,7 @@ async function loadBudaya() {
   }
 }
 
-// carousel
+// Buat carousel
 function renderCarousel() {
   const carousel = document.getElementById("carousel");
   if (!carousel || budayaData.length === 0) return;
@@ -37,54 +37,72 @@ function renderCarousel() {
 function updateCarousel() {
   const carousel = document.getElementById("carousel");
   if (!carousel) return;
-  const card = carousel.querySelector(".carousel-card");
-  if (!card) return;
 
-  const gap = 20;
-  const cardWidth = card.offsetWidth + gap;
-  carousel.style.transform = `translateX(-${cardWidth * currentIndex}px)`;
+  const cards = carousel.querySelectorAll(".carousel-card");
+  if (cards.length === 0) return;
+
+  // reset semua efek
+  cards.forEach((card) => card.classList.remove("active", "near"));
+
+  // tentukan posisi tengah supaya 3 kartu aktif berada di tengah
+  const centerOffset = Math.floor(visibleCards / 2);
+
+  for (let i = 0; i < visibleCards; i++) {
+    const index = (currentIndex + i) % cards.length;
+    cards[index].classList.add("active");
+  }
+
+  // buat efek kecil kanan kiri dari cluster aktif
+  const leftIndex = (currentIndex - 1 + cards.length) % cards.length;
+  const rightIndex = (currentIndex + visibleCards) % cards.length;
+  cards[leftIndex].classList.add("near");
+  cards[rightIndex].classList.add("near");
+
+  // posisi supaya cluster 3 kartu aktif selalu di tengah
+  const cardWidth = cards[0].offsetWidth + 25;
+  const totalCards = cards.length;
+  const offset =
+    (totalCards * cardWidth) / 2 -
+    ((currentIndex + centerOffset + 0.5) * cardWidth);
+
+  carousel.style.transform = `translateX(${offset}px)`;
 }
 
+// tombol next & prev (muter terus)
 function nextSlide() {
-  if (currentIndex < budayaData.length - visibleCards) {
-    currentIndex++;
-    updateCarousel();
-  }
+  currentIndex = (currentIndex + 1) % budayaData.length;
+  updateCarousel();
 }
 
 function prevSlide() {
-  if (currentIndex > 0) {
-    currentIndex--;
-    updateCarousel();
-  }
+  currentIndex = (currentIndex - 1 + budayaData.length) % budayaData.length;
+  updateCarousel();
 }
 
 // Ubah background hero
 function changeBackground(title, imgUrl) {
   const heroImg = document.getElementById("heroImg");
   const heroTitle = document.getElementById("heroTitle");
-  const heroSubtitle = document.getElementById("heroSubtitle");
 
-  heroImg.src = imgUrl;
-  heroTitle.innerText = title;
-  heroSubtitle.innerText = "Destinasi Impianmu 🌴✨";
+  if (heroImg) heroImg.src = imgUrl;
+  if (heroTitle) heroTitle.innerText = title;
 }
 
 // daftar destinasi
 function renderDestinations() {
-  const list = document.getElementById("destinationsList");
+  const list = document.getElementById("budayasList");
   if (!list) return;
 
   list.innerHTML = "";
 
-  budayaData.forEach(d => {
+  budayaData.forEach((d) => {
     const item = document.createElement("div");
-    item.className = "destination-item";
+    item.className = "budaya-card";
     item.innerHTML = `
+      <img src="${d.images[0]}" alt="${d.nama}">
       <h3>${d.nama}</h3>
-      <p><strong>Lokasi:</strong> ${d.lokasi}</p>
       <p>${d.deskripsi}</p>
-      <img src="${d.images[0]}" alt="${d.nama}" width="300">
+      <button>Pelajari</button>
     `;
     list.appendChild(item);
   });
@@ -92,8 +110,9 @@ function renderDestinations() {
 
 // Scroll ke search
 function scrollToSearch() {
-  const destSection = document.getElementById("destinations");
-  if(destSection) destSection.scrollIntoView({ behavior: "smooth" });
+  const destSection = document.getElementById("budaya");
+  if (destSection)
+    destSection.scrollIntoView({ behavior: "smooth" });
 }
 
 // Inisialisasi

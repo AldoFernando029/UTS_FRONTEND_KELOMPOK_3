@@ -6,6 +6,8 @@
       "lokasi": "Madura, Jawa Timur",
       "deskripsi": "Perlombaan pacuan sapi tradisional yang menjadi pesta rakyat masyarakat Madura.",
       "kategori": "Tradisi",
+      "tanggal_terjadi": "Setiap tahun pada bulan September–Oktober",
+      "mini_history": "Karapan Sapi telah ada sejak abad ke-13 dan awalnya digelar sebagai cara menentukan sapi terbaik untuk membajak sawah. Kini menjadi simbol kebanggaan masyarakat Madura.",
       "images": ["img/karapansapi1.jpg", "img/karapansapi2.jpg"]
     },
     {
@@ -14,6 +16,8 @@
       "lokasi": "Kalimantan Tengah",
       "deskripsi": "Upacara adat masyarakat Dayak Ngaju untuk menghormati arwah leluhur dengan prosesi pengumpulan tulang belulang.",
       "kategori": "Upacara Adat",
+      "tanggal_terjadi": "Tidak memiliki tanggal pasti, biasanya antara Oktober–Desember",
+      "mini_history": "Ritual Tiwah merupakan tradisi kuno masyarakat Dayak Ngaju untuk menyatukan kembali arwah leluhur ke Lewu Tatau (alam baka) sebagai bentuk penghormatan dan penyucian.",
       "images": ["img/tiwah1.jpeg", "img/tiwah2.jpg"]
     },
     {
@@ -22,6 +26,8 @@
       "lokasi": "Gunung Bromo, Jawa Timur",
       "deskripsi": "Upacara persembahan masyarakat Tengger untuk Sang Hyang Widhi, dilakukan setiap 14 Kasada.",
       "kategori": "Upacara Adat",
+      "tanggal_terjadi": "Setiap 14 bulan Kasada (sekitar Juni–Juli)",
+      "mini_history": "Upacara Kasada berasal dari legenda Roro Anteng dan Joko Seger sebagai wujud syukur masyarakat Tengger kepada Sang Hyang Widhi atas berkah kehidupan dan hasil bumi.",
       "images": ["img/kasada1.jpg", "img/kasada2.jpg"]
     },
     {
@@ -30,14 +36,18 @@
       "lokasi": "Bali",
       "deskripsi": "Upacara pembakaran jenazah umat Hindu Bali sebagai simbol penyucian roh menuju nirwana.",
       "kategori": "Upacara Adat",
+      "tanggal_terjadi": "Tidak memiliki tanggal tetap, tergantung perhitungan hari baik menurut adat Bali",
+      "mini_history": "Ngaben sudah dilakukan sejak zaman kerajaan Bali kuno dan dipercaya sebagai proses pelepasan roh agar dapat kembali ke alam leluhur dengan tenang.",
       "images": ["img/ngaben1.jpg", "img/ngaben2.jpg"]
     },
-    { 
+    {
       "id": 5,
       "nama": "Dugderan",
       "lokasi": "Semarang, Jawa Tengah",
       "deskripsi": "Festival penyambutan bulan Ramadan dengan kirab budaya dan ikon Warak Ngendog.",
       "kategori": "Festival",
+      "tanggal_terjadi": "Satu minggu sebelum bulan Ramadan dimulai",
+      "mini_history": "Dugderan dimulai pada abad ke-19 saat masa Bupati Semarang untuk mengumumkan awal puasa Ramadan dan menjadi tradisi tahunan yang meriah hingga kini.",
       "images": ["img/dugderan1.jpg", "img/dugderan2.jpg"]
     },
     {
@@ -46,6 +56,8 @@
       "lokasi": "Jembrana, Bali",
       "deskripsi": "Balapan kerbau khas Bali yang menjadi ajang perayaan dan hiburan masyarakat petani.",
       "kategori": "Tradisi",
+      "tanggal_terjadi": "Setiap tahun antara Juli–November",
+      "mini_history": "Makepung berasal dari tradisi petani Jembrana yang saling adu kecepatan kerbau setelah musim panen. Kini menjadi ajang wisata budaya dan kebanggaan daerah.",
       "images": ["img/makepung1.jpg", "img/makepung2.jpg"]
     },
     {
@@ -54,6 +66,8 @@
       "lokasi": "Sumba, Nusa Tenggara Timur",
       "deskripsi": "Tradisi perang tombak di atas kuda sebagai bentuk syukur atas panen dan penghormatan leluhur.",
       "kategori": "Tradisi",
+      "tanggal_terjadi": "Bulan Februari–Maret setiap tahun",
+      "mini_history": "Pasola merupakan ritual adat Sumba yang dipercaya menandai datangnya musim panen. Tradisi ini juga memiliki nilai spiritual sebagai simbol keberanian dan persatuan.",
       "images": ["img/pasola1.jpg", "img/pasola2.jpg"]
     },
     {
@@ -62,6 +76,8 @@
       "lokasi": "Kuningan, Jawa Barat",
       "deskripsi": "Upacara adat sebagai ungkapan syukur masyarakat Sunda atas hasil panen.",
       "kategori": "Upacara Adat",
+      "tanggal_terjadi": "Setiap bulan Rayagung dalam kalender Sunda (sekitar Juli–Agustus)",
+      "mini_history": "Seren Taun telah dilakukan sejak abad ke-16 sebagai bentuk rasa syukur kepada Tuhan atas panen dan harapan untuk musim tanam berikutnya.",
       "images": ["img/serentaun1.jpg", "img/serentaun2.jpg"]
     },
     {
@@ -70,6 +86,8 @@
       "lokasi": "Papua",
       "deskripsi": "Tradisi memasak bersama menggunakan batu panas sebagai bentuk kebersamaan dan rasa syukur.",
       "kategori": "Tradisi",
+      "tanggal_terjadi": "Dilakukan pada acara penting seperti kelahiran, pernikahan, atau kedamaian antar suku",
+      "mini_history": "Bakar Batu merupakan tradisi turun-temurun masyarakat pegunungan Papua yang mempererat persaudaraan dan menjadi simbol solidaritas antarwarga.",
       "images": ["img/bakarbatu1.jpg", "img/bakarbatu2.jpg"]
     },
     {
@@ -78,6 +96,8 @@
       "lokasi": "Sumatera Utara",
       "deskripsi": "Festival tahunan menampilkan seni Batak, lomba perahu, dan kuliner khas sekitar Danau Toba.",
       "kategori": "Festival",
+      "tanggal_terjadi": "Biasanya diadakan pada bulan Desember setiap tahun",
+      "mini_history": "Festival Danau Toba dimulai pada tahun 1980-an untuk mempromosikan pariwisata Sumatera Utara dan melestarikan budaya Batak.",
       "images": ["img/danautoba1.jpg", "img/danautoba2.jpg"]
     },
     {
@@ -86,6 +106,8 @@
       "lokasi": "Wamena, Papua",
       "deskripsi": "Festival perang suku yang kini menjadi simbol perdamaian dan ajang promosi budaya Papua.",
       "kategori": "Festival",
+      "tanggal_terjadi": "Setiap bulan Agustus",
+      "mini_history": "Festival Lembah Baliem dimulai pada tahun 1989 oleh pemerintah Papua sebagai cara memperkenalkan semangat persatuan dan budaya suku-suku di Pegunungan Tengah.",
       "images": ["img/lembahbaliem1.jpg", "img/lembahbaliem2.jpg"]
     },
     {
@@ -94,9 +116,9 @@
       "lokasi": "Ponorogo, Jawa Timur",
       "deskripsi": "Festival yang menampilkan kesenian Reog khas Ponorogo dengan topeng singa barong megah.",
       "kategori": "Festival",
+      "tanggal_terjadi": "Setiap bulan Oktober",
+      "mini_history": "Reog Ponorogo memiliki akar sejarah dari masa Kerajaan Bantarangin. Festival ini digelar untuk melestarikan kesenian lokal dan menarik wisatawan ke Ponorogo.",
       "images": ["img/reogponorogo1.jpg", "img/reogponorogo2.jpg"]
     }
   ]
 }
-
-
