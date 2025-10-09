@@ -41,7 +41,7 @@ body {
 /* HERO */
 .hero {
   height: 100vh;
-  background: url('img/homepageawal.png') no-repeat center center/cover;
+  background: url('../img/homepageawal.png') no-repeat center center/cover;
   display: flex;
   align-items: center;
   justify-content: flex-end; 
@@ -88,7 +88,7 @@ body {
 
 /* ABOUT US */
 .about-section {
-  background: url('about.png') no-repeat center center/cover;
+  background: url('../img/about.png') no-repeat center center/cover;
   display: flex;
   margin-top: 80px;
   padding-top: 200px;

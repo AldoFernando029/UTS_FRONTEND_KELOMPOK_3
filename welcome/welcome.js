@@ -5,7 +5,7 @@ document.getElementById('toAboutBtn')?.addEventListener('click', () => {
 
 // Navigasi tombol about -> welcome/homepage (opsional)
 document.getElementById('getStartedBtn')?.addEventListener('click', () => {
-    window.location.href = 'homepage.html'; // ganti ke halaman utama
+    window.location.href = '../home/homepage.html'; // ganti ke halaman utama
 });
 
 // Inisialisasi halaman welcome 

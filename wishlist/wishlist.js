@@ -10,7 +10,7 @@ function renderWishlist(items) {
       <div class="empty-message">
         <h2>Wishlist kamu masih kosong 😢</h2>
         <p>Yuk, tambahkan destinasi favoritmu sekarang!</p>
-        <button onclick="window.location.href='destinasi.html'">Tambah Wishlist</button>
+        <button onclick="window.location.href='../destinasi/destinasi.html'">Tambah Wishlist</button>
       </div>
     `;
     return;
@@ -34,7 +34,7 @@ function renderWishlist(items) {
     }
 
     card.innerHTML = `
-      <img src="${item.img}" alt="${item.name}">
+      <img src="../${item.img}" alt="${item.name}">
       <h3>${item.name}</h3>
       <p>${item.desc || ""}</p>
       <div class="rating">${starsHTML}</div>

@@ -1,43 +1,46 @@
 let budayaData = [];
 let currentIndex = 0;
-const visibleCards = 3;
 let currentHeroId = 1;
 
 // ambil data JSON
 async function loadBudaya() {
   try {
-    const res = await fetch("budaya.json");
+    const res = await fetch("../budaya.json");
     const data = await res.json();
     budayaData = data.budaya;
+
     if (budayaData.length > 0) {
       changeBackground(budayaData[0].nama, budayaData[0].images[0], budayaData[0].id);
     }
+
     renderCarousel();
     renderDestinations();
+    updateNavButtons(); // update tombol next/prev
   } catch (error) {
     console.error("Gagal mengambil data JSON:", error);
   }
 }
 
-// buat carousel
+// RENDER CAROUSEL
 function renderCarousel() {
   const carousel = document.getElementById("carousel");
   if (!carousel || budayaData.length === 0) return;
 
   carousel.innerHTML = "";
 
-  budayaData.forEach((d) => {
+  budayaData.forEach((d, index) => {
     const card = document.createElement("div");
     card.className = "carousel-card";
-    card.dataset.name = d.nama.toLowerCase();
+    card.dataset.index = index;
     card.onclick = () => changeBackground(d.nama, d.images[0], d.id);
-    card.innerHTML = `<img src="${d.images[0]}" alt="${d.nama}">`;
+    card.innerHTML = `<img src="../${d.images[0]}" alt="${d.nama}">`;
     carousel.appendChild(card);
   });
 
   updateCarousel();
 }
 
+// UPDATE CAROUSEL
 function updateCarousel() {
   const carousel = document.getElementById("carousel");
   if (!carousel) return;
@@ -45,71 +48,68 @@ function updateCarousel() {
   const cards = carousel.querySelectorAll(".carousel-card");
   if (!cards.length) return;
 
-  // reset semua
-  cards.forEach(card => card.classList.remove("active", "near"));
+  cards.forEach(card => card.classList.remove("active"));
+  const activeCard = cards[currentIndex];
+  if (activeCard) activeCard.classList.add("active");
 
-  const totalCards = cards.length;
-  const centerIndex = (currentIndex + 1) % totalCards; // kartu tengah dari 3 besar
-  const prevIndex = (centerIndex - 1 + totalCards) % totalCards;
-  const nextIndex = (centerIndex + 1) % totalCards;
-
-  cards[prevIndex].classList.add("near");
-  cards[centerIndex].classList.add("active");
-  cards[nextIndex].classList.add("near");
-
-  // hitung transform supaya kartu tengah selalu di tengah carousel-wrapper
   const wrapper = carousel.parentElement;
   const wrapperWidth = wrapper.offsetWidth;
-  const centerCard = cards[centerIndex];
-  const cardLeft = centerCard.offsetLeft + centerCard.offsetWidth / 2;
-  const translateX = wrapperWidth / 2 - cardLeft;
+  const cardCenter = activeCard.offsetLeft + activeCard.offsetWidth / 2;
+  const translateX = wrapperWidth / 2 - cardCenter;
 
   carousel.style.transform = `translateX(${translateX}px)`;
+
+  updateNavButtons();
 }
 
-// tombol next & prev
+// NEXT & PREV
 function nextSlide() {
-  currentIndex = (currentIndex + 1) % budayaData.length;
-  updateCarousel();
+  if (currentIndex < budayaData.length - 1) {
+    currentIndex++;
+    updateCarousel();
+  }
 }
 
 function prevSlide() {
-  currentIndex = (currentIndex - 1 + budayaData.length) % budayaData.length;
-  updateCarousel();
+  if (currentIndex > 0) {
+    currentIndex--;
+    updateCarousel();
+  }
 }
 
-// ubah background hero & update tombol
+// CHANGE HERO
 function changeBackground(title, imgUrl, id) {
   const heroImg = document.getElementById("heroImg");
   const heroTitle = document.getElementById("heroTitle");
+
   if (heroImg) heroImg.style.opacity = 0;
+
   setTimeout(() => {
-    if (heroImg) heroImg.src = imgUrl;
+    if (heroImg) heroImg.src = `../${imgUrl}`;
     if (heroImg) heroImg.style.opacity = 1;
     if (heroTitle) heroTitle.innerText = title;
     currentHeroId = id;
   }, 200);
 }
 
-// ke halaman detail
+// GO TO DETAIL
 function goDetail(id) {
-  window.location.href = `detailbudaya.html?id=${id}`;
+  window.location.href = `../detail/detailbudaya.html?id=${id}`;
 }
 
-// daftar destinasi
+// DAFTAR DESTINASI
 function renderDestinations(filteredData = null) {
   const list = document.getElementById("budayasList");
   if (!list) return;
 
   list.innerHTML = "";
-
   const dataToRender = filteredData || budayaData;
 
-  dataToRender.forEach((d) => {
+  dataToRender.forEach(d => {
     const item = document.createElement("div");
     item.className = "budaya-card";
     item.innerHTML = `
-      <img src="${d.images[0]}" alt="${d.nama}">
+      <img src="../${d.images[0]}" alt="${d.nama}">
       <h3>${d.nama}</h3>
       <p>${d.deskripsi}</p>
       <button onclick="goDetail(${d.id})">Pelajari</button>
@@ -118,11 +118,19 @@ function renderDestinations(filteredData = null) {
   });
 }
 
-// SEARCH FUNCTION
+// SEARCH BAR
 function searchBudaya() {
   const input = document.getElementById("searchInput").value.toLowerCase();
   const filtered = budayaData.filter(d => d.nama.toLowerCase().includes(input));
   renderDestinations(filtered);
+}
+
+function updateNavButtons() {
+  const btnPrev = document.getElementById("prevBtn");
+  const btnNext = document.getElementById("nextBtn");
+
+  if (btnPrev) btnPrev.disabled = currentIndex === 0;
+  if (btnNext) btnNext.disabled = currentIndex === budayaData.length - 1;
 }
 
 document.addEventListener("DOMContentLoaded", loadBudaya);
